@@ -1,0 +1,49 @@
+<app-primary></app-primary>
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+<p class="lead">
+  These are your projects ...
+</p>
+</div>
+
+<div class="container">
+<div class="card-deck mb-3 text-center">
+<div class="card mb-4 shadow-sm">
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">New project</h4>
+  </div>
+  <form class="card-body" (ngSubmit)="onSubmit()"
+        #projectForm="ngForm">
+    <label for="inputProjectName" class="sr-only">Project name</label>
+    <input type="text" id="inputProjectName" class="form-control"
+           placeholder="Project name" required autofocus
+           [(ngModel)]="inputProjectName" name="inputProjectName">
+    <button class="btn btn-lg btn-primary btn-block"
+            [disabled]="!projectForm.form.valid"
+            type="submit">Create project</button>
+  </form>
+</div>
+
+<div class="card mb-4 shadow-sm" *ngFor="let project of projects$ | async">
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">{{project.title}}</h4>
+  </div>
+  <div class="card-body">
+    <a href="http://localhost:3030/project/{{project.urlKey}}" role="button" class="btn btn-lg btn-block btn-primary">Launch</a>
+  </div>
+</div>
+
+
+<div class="card mb-4 shadow-sm">
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">first</h4>
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-lg btn-block btn-primary">Launch</button>
+  </div>
+</div>
+</div>
+
+<app-footer></app-footer>
+
+</div>
